@@ -1,0 +1,94 @@
+<div class="container py-5">
+
+  <div class="row g-4">
+
+    <!-- @if Example -->
+    <div class="col-lg-6">
+
+      <div class="card shadow-sm h-100">
+
+        <div class="card-header bg-primary text-white">
+          <h4 class="mb-0">Angular if Example</h4>
+        </div>
+
+        <div class="card-body">
+
+          @if (divIsVisible) {
+            <div class="alert alert-success text-center">
+              ✅ Div 1 is Visible
+            </div>
+          } @else {
+            <div class="alert alert-secondary text-center">
+              ❌ Div 1 is Hidden
+            </div>
+          }
+
+          <div class="d-flex justify-content-center gap-3 mt-3">
+
+            <button
+              class="btn btn-danger"
+              (click)="hideDiv()">
+              Hide
+            </button>
+
+            <button
+              class="btn btn-success"
+              (click)="showDiv()">
+              Show
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- @for Example -->
+    <div class="col-lg-6">
+
+      <div class="card shadow-sm h-100">
+
+        <div class="card-header bg-success text-white">
+          <h4 class="mb-0">Angular for Example</h4>
+        </div>
+
+        <div class="card-body">
+
+          <ul class="list-group">
+
+            @for (city of cityList; track city; let i = $index) {
+
+              <li
+                class="list-group-item d-flex justify-content-between align-items-center">
+
+                <span>
+                  {{ city }}
+                </span>
+
+                <span class="badge bg-primary">
+                  {{ i + 1 }}
+                </span>
+
+              </li>
+
+            } @empty {
+
+              <li class="list-group-item text-center text-muted">
+                No Cities Available
+              </li>
+
+            }
+
+          </ul>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

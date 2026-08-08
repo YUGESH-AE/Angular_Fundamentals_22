@@ -1,0 +1,105 @@
+<div class="container mt-4">
+
+  <h2 class="text-center mb-4">
+    Angular Attribute Directives
+  </h2>
+
+  <div class="row g-4">
+
+    <!-- ngClass Example -->
+    <div class="col-md-6">
+
+      <div class="card shadow-sm">
+
+        <div class="card-header bg-primary text-white">
+          ngClass Example
+        </div>
+
+        <div class="card-body">
+
+          <div
+            class="p-4 text-center text-white rounded"
+            [ngClass]="divBgColor">
+
+            Dynamic Background Color
+          </div>
+
+          <div class="mt-3">
+
+            <button
+              class="btn btn-success me-2"
+              (click)="addDivColor('bg-success')">
+
+              Green
+            </button>
+
+            <button
+              class="btn btn-danger me-2"
+              (click)="addDivColor('bg-danger')">
+
+              Red
+            </button>
+
+            <button
+              class="btn btn-warning"
+              (click)="addDivColor('bg-warning')">
+
+              Yellow
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ngStyle Example -->
+    <div class="col-md-6">
+
+      <div class="card shadow-sm">
+
+        <div class="card-header bg-success text-white">
+          ngStyle Example
+        </div>
+
+        <div class="card-body">
+
+          <div
+            class="p-4 text-center bg-dark rounded"
+            [ngStyle]="{
+              'font-size': fontSize,
+              'color': textColor
+            }">
+
+            Dynamic Font Size
+          </div>
+
+          <div class="mt-3">
+
+            <button
+              class="btn btn-primary me-2"
+              (click)="increaseFontSize()">
+
+              Increase Font
+            </button>
+
+            <button
+              class="btn btn-secondary"
+              (click)="decreaseFontSize()">
+
+              Decrease Font
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

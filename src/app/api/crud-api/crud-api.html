@@ -1,0 +1,378 @@
+<div class="container py-5">
+
+  <!-- Page Header -->
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+      <h2 class="fw-bold mb-1">User Management</h2>
+      <p class="text-muted mb-0">
+        Create, update and manage users
+      </p>
+    </div>
+
+    <span class="badge bg-primary fs-6 px-3 py-2">
+      {{ users.length }} Users
+    </span>
+  </div>
+
+
+  <!-- ================= FORM CARD ================= -->
+
+  <div class="card border-0 shadow-sm mb-5">
+
+    <!-- Card Header -->
+    <div class="card-header bg-primary text-white py-3">
+      <h5 class="mb-0 fw-semibold">
+        {{ isEdited ? '✏️ Edit User' : '➕ Create New User' }}
+      </h5>
+    </div>
+
+    <div class="card-body p-4">
+
+      <form
+        [formGroup]="userForm"
+        (ngSubmit)="upsertUser()">
+
+        <!-- First Row -->
+        <div class="row g-3">
+
+          <!-- ID -->
+          <div class="col-md-2">
+
+            <label class="form-label fw-semibold">
+              ID
+            </label>
+
+            <input
+              type="number"
+              class="form-control"
+              placeholder="ID"
+              min="1"
+              max="10"
+              formControlName="id">
+
+          </div>
+
+
+          <!-- Name -->
+          <div class="col-md-5">
+
+            <label class="form-label fw-semibold">
+              Name
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter full name"
+              formControlName="name">
+
+          </div>
+
+
+          <!-- Username -->
+          <div class="col-md-5">
+
+            <label class="form-label fw-semibold">
+              User Name
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter username"
+              formControlName="userName">
+
+          </div>
+
+        </div>
+
+
+        <!-- Second Row -->
+        <div class="row g-3 mt-2">
+
+          <!-- Email -->
+          <div class="col-md-6">
+
+            <label class="form-label fw-semibold">
+              Email Address
+            </label>
+
+            <input
+              type="email"
+              class="form-control"
+              placeholder="example@email.com"
+              formControlName="email">
+
+          </div>
+
+
+          <!-- Phone -->
+          <div class="col-md-6">
+
+            <label class="form-label fw-semibold">
+              Phone Number
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Enter phone number"
+              formControlName="phone">
+
+          </div>
+
+        </div>
+
+
+        <!-- Third Row -->
+        <div class="row g-3 mt-2">
+
+          <!-- Website -->
+          <div class="col-12">
+
+            <label class="form-label fw-semibold">
+              Website
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              placeholder="https://example.com"
+              formControlName="website">
+
+          </div>
+
+        </div>
+
+
+        <!-- Buttons -->
+        <div class="d-flex gap-2 mt-4">
+
+          <button
+            type="submit"
+            class="btn btn-primary px-4">
+
+            {{ isEdited ? 'Update User' : 'Save User' }}
+
+          </button>
+
+          <button
+            type="button"
+            class="btn btn-outline-secondary px-4"
+            (click)="userForm.reset()">
+
+            Clear
+
+          </button>
+
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- ================= USERS TABLE ================= -->
+
+  <div class="card border-0 shadow-sm">
+
+    <!-- Table Header -->
+    <div
+      class="card-header bg-dark text-white py-3
+             d-flex justify-content-between align-items-center">
+
+      <h5 class="mb-0 fw-semibold">
+        👥 Users List
+      </h5>
+
+      <span class="badge bg-light text-dark">
+        Total: {{ users.length }}
+      </span>
+
+    </div>
+
+
+    <div class="card-body p-0">
+
+      <div class="table-responsive">
+
+        <table
+          class="table table-hover align-middle mb-0">
+
+          <!-- Table Head -->
+          <thead class="table-light">
+
+          <tr>
+
+            <th class="ps-4 py-3">
+              ID
+            </th>
+
+            <th>
+              Name
+            </th>
+
+            <th>
+              Username
+            </th>
+
+            <th>
+              Email
+            </th>
+
+            <th>
+              Phone
+            </th>
+
+            <th>
+              Website
+            </th>
+
+            <th class="text-center">
+              Actions
+            </th>
+
+          </tr>
+
+          </thead>
+
+
+          <!-- Table Body -->
+          <tbody>
+
+            @for (user of users; track user.id) {
+
+              <tr>
+
+                <!-- ID -->
+                <td class="ps-4">
+
+                  <span
+                    class="badge rounded-pill bg-primary px-3 py-2">
+
+                    {{ user.id }}
+
+                  </span>
+
+                </td>
+
+
+                <!-- Name -->
+                <td>
+
+                  <div class="fw-semibold">
+                    {{ user.name }}
+                  </div>
+
+                </td>
+
+
+                <!-- Username -->
+                <td>
+
+                  <span class="text-muted">
+                    {{ user.userName }}
+                  </span>
+
+                </td>
+
+
+                <!-- Email -->
+                <td>
+
+                  <span>
+                    {{ user.email }}
+                  </span>
+
+                </td>
+
+
+                <!-- Phone -->
+                <td>
+                  {{ user.phone }}
+                </td>
+
+
+                <!-- Website -->
+                <td>
+
+                  <span class="text-primary">
+                    {{ user.website }}
+                  </span>
+
+                </td>
+
+
+                <!-- Actions -->
+                <td>
+
+                  <div
+                    class="d-flex justify-content-center gap-2">
+
+                    <!-- Edit -->
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-success"
+                      (click)="editUser(user)">
+
+                      ✏️ Edit
+
+                    </button>
+
+
+                    <!-- Delete -->
+                    <button
+                      type="button"
+                      class="btn btn-sm btn-outline-danger"
+                      (click)="deleteUser(user.id)">
+
+                      🗑️ Delete
+
+                    </button>
+
+                  </div>
+
+                </td>
+
+              </tr>
+
+            } @empty {
+
+              <!-- Empty State -->
+              <tr>
+
+                <td
+                  colspan="7"
+                  class="text-center py-5">
+
+                  <div class="fs-1 mb-2">
+                    📭
+                  </div>
+
+                  <h6 class="fw-semibold">
+                    No Users Found
+                  </h6>
+
+                  <p class="text-muted mb-0">
+                    Create your first user using the form above.
+                  </p>
+
+                </td>
+
+              </tr>
+
+            }
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
