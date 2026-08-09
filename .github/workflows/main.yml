@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Setup Node.js
@@ -29,8 +29,16 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Angular
-        run: npm run build
+      - name: Build Angular application
+        run: npm run build -- --base-href /Angular_Fundamentals_22/
+
+      - name: Show build output
+        run: |
+          echo "===== DIST CONTENT ====="
+          find dist -maxdepth 5 -type f | sort
+
+          echo "===== INDEX FILES ====="
+          find dist -name index.html -print
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -50,6 +58,6 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - name: Deploy
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
